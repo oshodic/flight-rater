@@ -1,6 +1,7 @@
 module Api
   module V1
     class AirlinesController < ApplicationController
+
       def index
         airlines = Airline.AirlinesController
         
@@ -30,6 +31,7 @@ module Api
           render json: AirlineSerializer.new(airlines, options).serialized_json
         else
           render json: { error: airline.errors.messages }, status: 422
+        end
       end
 
       def destroy
@@ -39,6 +41,7 @@ module Api
           head :no_content
         else
           render json: { error: airline.errors.messages }, status: 422
+        end
       end
 
       private
@@ -50,6 +53,7 @@ module Api
       def options
         @options ||= { include: %i[reviews]}
       end
+
     end
   end
 end
